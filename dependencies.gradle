@@ -1,0 +1,6 @@
+ext.versions = [
+        retrofit     : '2.9.0',
+        mokito       : '3.7.7',
+        coroutineTest: '1.5.2',
+        truth        : '1.1.3'
+]

@@ -5,44 +5,44 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieApiModel(
     @SerializedName("page")
-    var page: Int?,
+    var page: Int? = null,
     @SerializedName("results")
-    var results: List<Result>?,
+    var results: List<Result>? = null,
     @SerializedName("total_pages")
-    var totalPages: Int?,
+    var totalPages: Int? = null,
     @SerializedName("total_results")
-    var totalResults: Int?
+    var totalResults: Int? = null
 )
 
 data class Result(
     @SerializedName("adult")
-    var adult: Boolean?,
+    var adult: Boolean? = null,
     @SerializedName("backdrop_path")
-    var backdropPath: String?,
+    var backdropPath: String? = null,
     @SerializedName("genre_ids")
-    var genreIds: List<Int>?,
+    var genreIds: List<Int>? = null,
     @SerializedName("id")
-    var id: Int?,
+    var id: Int? = null,
     @SerializedName("original_language")
-    var originalLanguage: String?,
+    var originalLanguage: String? = null,
     @SerializedName("original_title")
-    var originalTitle: String?,
+    var originalTitle: String? = null,
     @SerializedName("overview")
-    var overview: String?,
+    var overview: String? = null,
     @SerializedName("popularity")
-    var popularity: Double?,
+    var popularity: Double? = null,
     @SerializedName("poster_path")
-    var posterPath: String?,
+    var posterPath: String? = null,
     @SerializedName("release_date")
-    var releaseDate: String?,
+    var releaseDate: String? = null,
     @SerializedName("title")
-    var title: String?,
+    var title: String? = null,
     @SerializedName("video")
-    var video: Boolean?,
+    var video: Boolean? = null,
     @SerializedName("vote_average")
-    var voteAverage: Double?,
+    var voteAverage: Double? = null,
     @SerializedName("vote_count")
-    var voteCount: Int?
+    var voteCount: Int? = null
 ) {
     fun getMovieItem(): Movie {
         return Movie(

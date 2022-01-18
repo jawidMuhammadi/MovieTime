@@ -1,4 +1,4 @@
-package com.spotlightapps.movietime.data.movielist
+package com.spotlightapps.movietime.data.movie
 
 import androidx.annotation.VisibleForTesting
 import com.spotlightapps.movietime.data.network.MovieService

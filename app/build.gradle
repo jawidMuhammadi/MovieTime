@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
+apply from: "$rootDir/dependencies.gradle"
 
 def getProperty(String filename, String propName) {
     def propsFile = rootProject.file(filename)
@@ -32,7 +33,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "TMDB_API_KEY", "\"${getProperty("local.properties","tmdb_api_key")}\""
+        buildConfigField "String", "TMDB_API_KEY", "\"${getProperty("local.properties", "tmdb_api_key")}\""
     }
 
 
@@ -73,6 +74,16 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+
+    //Mokito
+    testImplementation "org.mockito:mockito-core:$versions.mokito"
+
+    //Coroutines
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutineTest"
+
+    //Truth
+    testImplementation "com.google.truth:truth:$versions.truth"
+    androidTestImplementation "com.google.truth:truth:$versions.truth"
 }

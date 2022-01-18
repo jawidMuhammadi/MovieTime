@@ -17,7 +17,3 @@ buildscript {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-ext {
-    retrofit = "2.9.0"
-}

@@ -1,8 +1,8 @@
 package com.spotlightapps.movietime.di
 
 import com.spotlightapps.movietime.BuildConfig
-import com.spotlightapps.movietime.data.movielist.DefaultMovieRepository
-import com.spotlightapps.movietime.data.movielist.MovieRepository
+import com.spotlightapps.movietime.data.movie.DefaultMovieRepository
+import com.spotlightapps.movietime.data.movie.MovieRepository
 import com.spotlightapps.movietime.data.network.Endpoints
 import com.spotlightapps.movietime.data.network.MovieService
 import dagger.Module
