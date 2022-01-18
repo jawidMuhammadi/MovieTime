@@ -1,6 +1,8 @@
 package com.spotlightapps.movietime.di
 
 import com.spotlightapps.movietime.BuildConfig
+import com.spotlightapps.movietime.data.movielist.DefaultMovieRepository
+import com.spotlightapps.movietime.data.movielist.MovieRepository
 import com.spotlightapps.movietime.data.network.Endpoints
 import com.spotlightapps.movietime.data.network.MovieService
 import dagger.Module
@@ -60,6 +62,12 @@ class NetworkModule {
     @Singleton
     fun provideMovieService(retrofit: Retrofit): MovieService {
         return retrofit.create(MovieService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDefaultMovieRepository(movieService: MovieService): MovieRepository {
+        return DefaultMovieRepository(movieService)
     }
 
 }

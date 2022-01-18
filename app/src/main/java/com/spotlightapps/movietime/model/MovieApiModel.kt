@@ -43,4 +43,14 @@ data class Result(
     var voteAverage: Double?,
     @SerializedName("vote_count")
     var voteCount: Int?
-)
+) {
+    fun getMovieItem(): Movie {
+        return Movie(
+            id = id,
+            title = title,
+            posterPath = posterPath,
+            voteAverage = voteAverage?.toString(),
+            voteCount = voteCount?.toString()
+        )
+    }
+}
