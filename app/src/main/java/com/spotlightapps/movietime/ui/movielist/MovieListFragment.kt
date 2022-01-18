@@ -1,4 +1,4 @@
-package com.spotlightapps.movietime.ui.dashboard
+package com.spotlightapps.movietime.ui.movielist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,15 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.spotlightapps.movietime.R
-import com.spotlightapps.movietime.databinding.FragmentDashboardBinding
+import com.spotlightapps.movietime.databinding.FragmentMovieListBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class DashboardFragment : Fragment() {
+@AndroidEntryPoint
+class MovieListFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
-    private var _binding: FragmentDashboardBinding? = null
+    private val movieListViewModel: MovieListViewModel by viewModels()
+    private var _binding: FragmentMovieListBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,15 +25,13 @@ class DashboardFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+    ): View {
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentMovieListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        movieListViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

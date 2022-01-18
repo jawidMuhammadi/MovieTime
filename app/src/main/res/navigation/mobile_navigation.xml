@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.spotlightapps.movietime.ui.dashboard.DashboardFragment"
+        android:name="com.spotlightapps.movietime.ui.movielist.MovieListFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_movie_list" />
 
     <fragment
         android:id="@+id/navigation_notifications"
