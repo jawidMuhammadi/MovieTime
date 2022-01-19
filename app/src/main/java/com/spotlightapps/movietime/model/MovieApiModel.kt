@@ -7,14 +7,14 @@ data class MovieApiModel(
     @SerializedName("page")
     var page: Int? = null,
     @SerializedName("results")
-    var results: List<Result>? = null,
+    var movieResults: List<MovieResult>? = null,
     @SerializedName("total_pages")
     var totalPages: Int? = null,
     @SerializedName("total_results")
     var totalResults: Int? = null
 )
 
-data class Result(
+data class MovieResult(
     @SerializedName("adult")
     var adult: Boolean? = null,
     @SerializedName("backdrop_path")

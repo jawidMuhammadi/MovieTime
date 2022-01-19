@@ -1,7 +1,7 @@
 package com.spotlightapps.movietime
 
 import com.spotlightapps.movietime.model.MovieApiModel
-import com.spotlightapps.movietime.model.Result
+import com.spotlightapps.movietime.model.MovieResult
 
 /**
  * Created by Ahmad Jawid Muhammadi
@@ -9,7 +9,7 @@ import com.spotlightapps.movietime.model.Result
  */
 
 object TestData {
-    val result1 = Result(
+    val result1 = MovieResult(
         id = 1,
         title = "Title1",
         posterPath = "path1",
@@ -19,7 +19,7 @@ object TestData {
 
     val movieApiModel1 = MovieApiModel(
         page = 1,
-        results = listOf(result1),
+        movieResults = listOf(result1),
         totalPages = 1
     )
 }

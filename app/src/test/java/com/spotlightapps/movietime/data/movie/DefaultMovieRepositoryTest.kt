@@ -40,6 +40,8 @@ class DefaultMovieRepositoryTest {
     @Test
     fun getMovieList_returnsCorrectList() = coroutineRule.runBlockingTest {
         val list = movieRepository.getMovieList(false)
+
         assertThat(list.size).isEqualTo(1)
+        assertThat(list[0].title).isEqualTo(TestData.result1.title)
     }
 }

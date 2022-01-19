@@ -27,7 +27,7 @@ class DefaultMovieRepository(
 
     override suspend fun getMovieList(isToForceRemote: Boolean): List<Movie> {
         if (isToForceRemote || movieList.isEmpty()) {
-            val results = movieService.movieList().results
+            val results = movieService.movieList().movieResults
             results?.map { it.getMovieItem() }?.let {
                 mutex.withLock {
                     movieList.addAll(it)
