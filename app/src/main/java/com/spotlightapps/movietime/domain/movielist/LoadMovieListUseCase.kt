@@ -1,9 +1,12 @@
 package com.spotlightapps.movietime.domain.movielist
 
 import com.spotlightapps.movietime.data.movie.MovieRepository
-import com.spotlightapps.movietime.domain.CoroutineUseCase
+import com.spotlightapps.movietime.domain.FlowUseCase
 import com.spotlightapps.movietime.model.Movie
+import com.spotlightapps.movietime.model.Result
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 /**
  * Created by Ahmad Jawid Muhammadi
@@ -13,9 +16,11 @@ import kotlinx.coroutines.CoroutineDispatcher
 class LoadMovieListUseCase(
     private val movieRepository: MovieRepository,
     coroutineDispatcher: CoroutineDispatcher
-) : CoroutineUseCase<Boolean, List<Movie>>(coroutineDispatcher) {
+) : FlowUseCase<Boolean, List<Movie>>(coroutineDispatcher) {
 
-    override suspend fun execute(parameters: Boolean): List<Movie> {
-        return movieRepository.getMovieList(parameters)
+    override fun execute(parameters: Boolean): Flow<Result<List<Movie>>> {
+        return movieRepository.getMovieList(parameters).map {
+            Result.Success(it)
+        }
     }
 }

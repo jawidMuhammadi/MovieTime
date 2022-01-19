@@ -3,6 +3,8 @@ package com.spotlightapps.movietime.fakes
 import com.spotlightapps.movietime.TestData
 import com.spotlightapps.movietime.data.movie.MovieRepository
 import com.spotlightapps.movietime.model.Movie
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 /**
  * Created by Ahmad Jawid Muhammadi
@@ -13,10 +15,10 @@ class FakeMovieRepository : MovieRepository {
 
     private var isToThrowException: Boolean = false
 
-    override suspend fun getMovieList(isToForceRemote: Boolean): List<Movie> {
+    override fun getMovieList(isToForceRemote: Boolean): Flow<List<Movie>> {
         if (isToThrowException) throw Exception("Network Error")
         val apiResponse = TestData.movieApiModel1
-        return apiResponse.movieResults?.map { it.getMovieItem() }!!
+        return flow { emit(apiResponse.movieResults?.map { it.getMovieItem() }!!) }
     }
 
     fun setThrowException(isToThrowException: Boolean) {

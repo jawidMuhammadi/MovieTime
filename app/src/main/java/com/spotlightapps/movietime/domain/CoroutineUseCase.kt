@@ -7,7 +7,7 @@ import kotlinx.coroutines.withContext
 /**
  * Executes business logic synchronously or asynchronously using Coroutines.
  */
-abstract class CoroutineUseCase<in P, out R> constructor(
+abstract class CoroutineUseCase<in P, out R>(
     private val coroutineDispatcher: CoroutineDispatcher
 ) {
 

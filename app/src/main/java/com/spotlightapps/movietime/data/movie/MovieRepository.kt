@@ -3,6 +3,8 @@ package com.spotlightapps.movietime.data.movie
 import androidx.annotation.VisibleForTesting
 import com.spotlightapps.movietime.data.network.MovieService
 import com.spotlightapps.movietime.model.Movie
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
@@ -12,7 +14,7 @@ import kotlinx.coroutines.sync.withLock
  */
 
 interface MovieRepository {
-    suspend fun getMovieList(isToForceRemote: Boolean = false): List<Movie>
+    fun getMovieList(isToForceRemote: Boolean = false): Flow<List<Movie>>
 }
 
 class DefaultMovieRepository(
@@ -25,7 +27,7 @@ class DefaultMovieRepository(
     /** Prevent local variables to be modified by different threads*/
     private val mutex = Mutex()
 
-    override suspend fun getMovieList(isToForceRemote: Boolean): List<Movie> {
+    override fun getMovieList(isToForceRemote: Boolean): Flow<List<Movie>> = flow {
         if (isToForceRemote || movieList.isEmpty()) {
             val results = movieService.movieList().movieResults
             results?.map { it.getMovieItem() }?.let {
@@ -34,6 +36,6 @@ class DefaultMovieRepository(
                 }
             }
         }
-        return mutex.withLock { movieList }
+        emit(mutex.withLock { movieList })
     }
 }

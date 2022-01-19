@@ -6,6 +6,7 @@ import com.spotlightapps.movietime.TestData
 import com.spotlightapps.movietime.data.network.MovieService
 import com.spotlightapps.movietime.runBlockingTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -41,8 +42,8 @@ class DefaultMovieRepositoryTest {
     fun getMovieList_returnsCorrectList() = coroutineRule.runBlockingTest {
         val list = movieRepository.getMovieList(false)
 
-        assertThat(list.size).isEqualTo(1)
-        assertThat(list[0].title).isEqualTo(TestData.result1.title)
-        assertThat(list[0].voteAverage).isInstanceOf(String::class.java)
+        assertThat(list.first().size).isEqualTo(1)
+        assertThat(list.first()[0].title).isEqualTo(TestData.result1.title)
+        assertThat(list.first()[0].voteAverage).isInstanceOf(String::class.java)
     }
 }

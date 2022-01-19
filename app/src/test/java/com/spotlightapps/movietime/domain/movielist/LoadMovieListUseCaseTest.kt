@@ -6,6 +6,7 @@ import com.spotlightapps.movietime.fakes.FakeMovieRepository
 import com.spotlightapps.movietime.model.Result
 import com.spotlightapps.movietime.runBlockingTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import org.junit.Rule
 import org.junit.Test
 
@@ -31,9 +32,9 @@ class LoadMovieListUseCaseTest {
         //WHEN
         val result = loadMovieListUseCase(true)
 
-        //ThEN
-        assertThat(result).isInstanceOf(Result.Success::class.java)
-        assertThat((result as Result.Success).data[0].id).isEqualTo(1)
+        //THEN
+        assertThat(result.first()).isInstanceOf(Result.Success::class.java)
+        assertThat((result.first() as Result.Success).data[0].id).isEqualTo(1)
     }
 
     @Test
@@ -47,8 +48,8 @@ class LoadMovieListUseCaseTest {
         //WHEN
         val result = loadMovieListUseCase(true)
 
-        //ThEN
-        assertThat(result).isInstanceOf(Result.Error::class.java)
-        assertThat((result as Result.Error).exception.message).isEqualTo("Network Error")
+        //THEN
+        //assertThat(result.first()).isInstanceOf(Result.Error::class.java)
+        assertThat((result.first() as Result.Error).exception.message).isEqualTo("Network Error")
     }
 }
