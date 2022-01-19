@@ -43,5 +43,6 @@ class DefaultMovieRepositoryTest {
 
         assertThat(list.size).isEqualTo(1)
         assertThat(list[0].title).isEqualTo(TestData.result1.title)
+        assertThat(list[0].voteAverage).isInstanceOf(String::class.java)
     }
 }
