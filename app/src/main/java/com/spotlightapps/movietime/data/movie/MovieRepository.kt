@@ -30,7 +30,7 @@ class DefaultMovieRepository(
     override fun getMovieList(isToForceRemote: Boolean): Flow<List<Movie>> = flow {
         if (isToForceRemote || movieList.isEmpty()) {
             val results = movieService.movieList().movieResults
-            results?.map { it.getMovieItem() }?.let {
+            results?.map { it.toMovieItem() }?.let {
                 mutex.withLock {
                     movieList.addAll(it)
                 }

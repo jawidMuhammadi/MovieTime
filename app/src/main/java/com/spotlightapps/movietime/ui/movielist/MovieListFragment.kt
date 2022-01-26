@@ -31,9 +31,6 @@ class MovieListFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        movieListViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
     }
 

@@ -18,7 +18,7 @@ class FakeMovieRepository : MovieRepository {
     override fun getMovieList(isToForceRemote: Boolean): Flow<List<Movie>> {
         if (isToThrowException) throw Exception("Network Error")
         val apiResponse = TestData.movieApiModel1
-        return flow { emit(apiResponse.movieResults?.map { it.getMovieItem() }!!) }
+        return flow { emit(apiResponse.movieResults?.map { it.toMovieItem() }!!) }
     }
 
     fun setThrowException(isToThrowException: Boolean) {

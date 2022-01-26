@@ -7,13 +7,14 @@ import com.spotlightapps.movietime.model.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 /**
  * Created by Ahmad Jawid Muhammadi
  * on 19-01-2022.
  */
 
-class LoadMovieListUseCase(
+class LoadMovieListUseCase @Inject constructor(
     private val movieRepository: MovieRepository,
     coroutineDispatcher: CoroutineDispatcher
 ) : FlowUseCase<Boolean, List<Movie>>(coroutineDispatcher) {

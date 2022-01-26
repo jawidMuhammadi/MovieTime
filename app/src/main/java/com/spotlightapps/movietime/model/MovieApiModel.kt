@@ -44,7 +44,7 @@ data class MovieResult(
     @SerializedName("vote_count")
     var voteCount: Int? = null
 ) {
-    fun getMovieItem(): Movie {
+    fun toMovieItem(): Movie {
         return Movie(
             id = id,
             title = title,
