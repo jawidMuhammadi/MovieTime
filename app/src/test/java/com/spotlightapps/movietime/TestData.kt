@@ -1,5 +1,6 @@
 package com.spotlightapps.movietime
 
+import com.spotlightapps.movietime.model.Movie
 import com.spotlightapps.movietime.model.MovieApiModel
 import com.spotlightapps.movietime.model.MovieResult
 
@@ -21,5 +22,13 @@ object TestData {
         page = 1,
         movieResults = listOf(result1),
         totalPages = 1
+    )
+
+    val movie = Movie(
+        id = 1,
+        title = "Title1",
+        posterPath = "path1",
+        voteAverage = "3.5",
+        voteCount = "5"
     )
 }
