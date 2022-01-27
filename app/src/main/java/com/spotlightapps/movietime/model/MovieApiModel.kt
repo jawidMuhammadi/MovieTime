@@ -2,6 +2,7 @@ package com.spotlightapps.movietime.model
 
 
 import com.google.gson.annotations.SerializedName
+import com.spotlightapps.movietime.data.network.Endpoints.IMAGE_BASE_URL
 
 data class MovieApiModel(
     @SerializedName("page")
@@ -48,7 +49,7 @@ data class MovieResult(
         return Movie(
             id = id,
             title = title,
-            posterPath = posterPath,
+            posterPath = IMAGE_BASE_URL + posterPath,
             voteAverage = voteAverage?.toString(),
             voteCount = voteCount?.toString()
         )

@@ -47,7 +47,7 @@ class MovieListViewModel @Inject constructor(
 }
 
 data class MovieUiState(
-    var isDataLoading: Boolean? = null,
+    var isDataLoading: Boolean = false,
     var movieList: List<Movie> = emptyList(),
     var message: String? = null
 )

@@ -4,38 +4,44 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import com.spotlightapps.movietime.binding.submitMovieItems
 import com.spotlightapps.movietime.databinding.FragmentMovieListBinding
+import com.spotlightapps.movietime.util.launchAndRepeatWithViewLifecycle
+import com.spotlightapps.movietime.util.showProgressBar
+import com.spotlightapps.movietime.util.showToastMessage
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class MovieListFragment : Fragment() {
 
-    private val movieListViewModel: MovieListViewModel by viewModels()
-    private var _binding: FragmentMovieListBinding? = null
+    private val viewModel: MovieListViewModel by viewModels()
+    private lateinit var binding: FragmentMovieListBinding
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        _binding = FragmentMovieListBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textDashboard
-        return root
+        binding = FragmentMovieListBinding.inflate(inflater, container, false)
+        binding.rvMovieList.adapter = MovieListAdapter()
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        launchAndRepeatWithViewLifecycle {
+            viewModel.uiState.collect {
+                binding.progressBar.showProgressBar(it.isDataLoading)
+                binding.rvMovieList.submitMovieItems(it.movieList)
+                it.message?.let { message ->
+                    showToastMessage(message)
+                }
+            }
+        }
     }
 }

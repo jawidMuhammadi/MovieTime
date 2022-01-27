@@ -52,6 +52,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 }
 
@@ -86,4 +87,13 @@ dependencies {
     //Truth
     testImplementation "com.google.truth:truth:$versions.truth"
     androidTestImplementation "com.google.truth:truth:$versions.truth"
+
+    //Livecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle"
+    kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
+
 }
