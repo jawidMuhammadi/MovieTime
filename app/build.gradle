@@ -95,5 +95,4 @@ dependencies {
     //Glide
     implementation "com.github.bumptech.glide:glide:$versions.glide"
     kapt "com.github.bumptech.glide:compiler:$versions.glide"
-
 }
