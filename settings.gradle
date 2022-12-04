@@ -8,3 +8,9 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MovieTime"
 include ':app'
+include ':feature'
+include ':core:common'
+include ':feature:movie'
+include ':core:designsystem'
+include ':core:network'
+include ':core:data'
