@@ -54,6 +54,7 @@ android {
         viewBinding true
         dataBinding true
     }
+    namespace 'com.spotlightapps.movietime'
 }
 
 dependencies {
